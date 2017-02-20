@@ -2,7 +2,7 @@
 
 FROM gcr.io/tensorflow/tensorflow:0.12.1-devel-gpu
 RUN apt-get -y update && apt-get install -y vim wget screen git subversion 
-RUN pip install prettytensor h5py pillow pandas matplotlib seaborn tqdm
+RUN pip install prettytensor h5py pillow pandas matplotlib seaborn tqdm requests
 RUN pip install keras
 RUN cd /root && git clone https://github.com/osh/KerasGAN
 
