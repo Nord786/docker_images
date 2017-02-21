@@ -10,11 +10,20 @@ RUN cd /root && git clone https://github.com/fchollet/deep-learning-models
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 
-RUN env | grep LD_LIB | sed 's|^|export |' >> /root/.bashrc
+#Создаем пользователя с uid аналогичным host машине
+RUN useradd -ms /bin/bash --uid 20170 a.murashev
+RUN adduser a.murashev sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 #Нужно, чтобы пути для CUDA прописались в bashrc и работали под screen
-COPY ./screenrc_docker /root/.screenrc 
+RUN env | grep LD_LIB | sed 's|^|export |' >> /home/a.murashev/.bashrc
+
+USER a.murashev
+WORKDIR /home/a.murashev
+
+COPY ./screenrc_docker /home/a.murashev/.screenrc 
 
 #Добавить CUDA_VISIBLE_DEVICES
-RUN echo "export CUDA_VISIBLE_DEVICES=2" >> /root/.bashrc
+RUN echo "export CUDA_VISIBLE_DEVICES=2" >> /home/a.murashev/.bashrc
 
 CMD python -m tensorflow.models.image.mnist.convolutional
