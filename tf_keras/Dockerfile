@@ -21,10 +21,13 @@ RUN env | grep LD_LIB | sed 's|^|export |' >> /home/$username/.bashrc
 COPY ./screenrc_docker /home/$username/.screenrc 
 RUN chown $username /home/$username/.screenrc
 
+RUN cp -r /root/.jupyter /home/$username && chown -R $username /home/$username/.jupyter
+
 USER $username
 WORKDIR /home/$username
 
 #Добавить CUDA_VISIBLE_DEVICES
 RUN echo "export CUDA_VISIBLE_DEVICES=2" >> /home/$username/.bashrc
+WORKDIR /WORK
 
 CMD python -m tensorflow.models.image.mnist.convolutional
