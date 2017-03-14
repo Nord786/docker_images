@@ -1,4 +1,4 @@
-#docker build -t tf_keras .
+#docker build -t tf12_keras_murashev .
 
 FROM gcr.io/tensorflow/tensorflow:0.12.1-devel-gpu
 RUN apt-get -y update && apt-get install -y vim wget screen git subversion 
