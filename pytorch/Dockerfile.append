@@ -1,14 +1,8 @@
-#docker build -t tf12_keras_murashev .
-
-FROM gcr.io/tensorflow/tensorflow:0.12.1-devel-gpu
 RUN apt-get -y update && apt-get install -y vim wget screen git subversion 
-RUN pip install prettytensor h5py pillow pandas matplotlib seaborn tqdm requests scikit-image keras-tqdm pymorphy2
-RUN pip install keras
+#RUN pip install prettytensor h5py pillow pandas matplotlib seaborn tqdm requests scikit-image pymorphy2
+#RUN pip install keras
 
-RUN cd /root && git clone https://github.com/osh/KerasGAN
-RUN cd /root && git clone https://github.com/fchollet/deep-learning-models
-
-RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+#RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -24,7 +18,7 @@ RUN env | grep LD_LIB | sed 's|^|export |' >> /home/$username/.bashrc
 RUN echo "defshell -bash" > /home/$username/.screenrc 
 RUN chown $username /home/$username/.screenrc
 
-RUN cp -r /root/.jupyter /home/$username && chown -R $username /home/$username/.jupyter
+#RUN cp -r /root/.jupyter /home/$username && chown -R $username /home/$username/.jupyter
 
 USER $username
 WORKDIR /home/$username
@@ -33,4 +27,3 @@ WORKDIR /home/$username
 RUN echo "export CUDA_VISIBLE_DEVICES=2" >> /home/$username/.bashrc
 WORKDIR /WORK
 
-CMD python -m tensorflow.models.image.mnist.convolutional
