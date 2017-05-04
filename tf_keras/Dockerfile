@@ -5,6 +5,10 @@ RUN apt-get -y update && apt-get install -y vim wget screen git subversion
 RUN pip install prettytensor h5py pillow pandas matplotlib seaborn tqdm requests scikit-image keras-tqdm pymorphy2
 RUN pip install keras
 
+#Непонятно заработает ли
+#RUN pip install http://download.pytorch.org/whl/cu80/torch-0.1.12.post1-cp27-none-linux_x86_64.whl 
+#RUN pip install torchvision
+
 RUN cd /root && git clone https://github.com/osh/KerasGAN
 RUN cd /root && git clone https://github.com/fchollet/deep-learning-models
 
