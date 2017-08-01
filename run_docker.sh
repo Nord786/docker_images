@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-image=${1:-tf12_keras_murashev}
+image=${1:-pytorch_murashev}
 name=${2:-$image}
 
 echo $image
