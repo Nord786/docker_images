@@ -40,7 +40,7 @@ RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-4.
      ~/miniconda.sh -b -p ~/conda && \     
      rm ~/miniconda.sh && \
      ~/conda/bin/conda install conda-build && \
-     ~/conda/bin/conda create -y --name pytorch-py35 python=3.5.2 numpy pyyaml scipy ipython mkl jupyter matplotlib && \
+     ~/conda/bin/conda create -y --name pytorch-py35 python=3.5.2 numpy pyyaml scipy ipython mkl jupyter matplotlib tqdm && \
      ~/conda/bin/conda clean -ya 
 
 ENV PATH ~/conda/envs/pytorch-py35/bin:$PATH
